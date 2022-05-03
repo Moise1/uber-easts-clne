@@ -1,26 +1,52 @@
+import React, { useState } from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import React from "react";
 
 interface Props {
-  txt?: string;
-  btnColor?: string;
-  txtColor?: string;
+  txt: string;
+  // btnColor: string;
+  // txtColor: string;
+  activeTab: string;
+  setActiveTab: (value: string) => void;
 }
 
 export const HeaderTabs = () => {
+  const [activeTab, setActiveTab] = useState<string>("Delivery");
   return (
     <View style={styles.headerTabs}>
-      <HeaderBtn txt="Delivery" btnColor="black" txtColor="white" />
-      <HeaderBtn txt="Pickup" btnColor="white" txtColor="black" />
+      <HeaderBtn
+        txt="Delivery"
+        activeTab={activeTab}
+        setActiveTab={setActiveTab}
+      />
+      <HeaderBtn
+        txt="Pickup"
+        activeTab={activeTab}
+        setActiveTab={setActiveTab}
+      />
     </View>
   );
 };
 
-const HeaderBtn = ({ txt, txtColor, btnColor }: Props) => (
-  <TouchableOpacity style={{...styles.headerBtn, backgroundColor: btnColor}}>
-    <Text style={{...styles.headerBtnTxt, color: txtColor}}>{txt}</Text>
-  </TouchableOpacity>
-);
+const HeaderBtn = (props: Props) => {
+  const {txt, activeTab, setActiveTab} = props;
+  return (
+    <TouchableOpacity
+      style={{
+        ...styles.headerBtn,
+        backgroundColor: activeTab === txt ? "black" : "white"
+      }} 
+      onPress={() => setActiveTab(txt)}>
+      <Text
+        style={{
+          ...styles.headerBtnTxt,
+          color: activeTab === txt ? "white" : "black",
+        }}
+      >
+        {txt}
+      </Text>
+    </TouchableOpacity>
+  );
+};
 
 const styles = StyleSheet.create({
   headerTabs: {
@@ -38,3 +64,5 @@ const styles = StyleSheet.create({
     fontWeight: "900",
   },
 });
+
+// Stopped at 31:32 min
