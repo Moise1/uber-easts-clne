@@ -3,8 +3,6 @@ import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 interface Props {
   txt: string;
-  // btnColor: string;
-  // txtColor: string;
   activeTab: string;
   setActiveTab: (value: string) => void;
 }
@@ -64,5 +62,3 @@ const styles = StyleSheet.create({
     fontWeight: "900",
   },
 });
-
-// Stopped at 31:32 min
