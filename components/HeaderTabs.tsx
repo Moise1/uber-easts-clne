@@ -9,6 +9,7 @@ interface Props {
 
 export const HeaderTabs = () => {
   const [activeTab, setActiveTab] = useState<string>("Delivery");
+  
   return (
     <View style={styles.headerTabs}>
       <HeaderBtn

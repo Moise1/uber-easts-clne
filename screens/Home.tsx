@@ -1,15 +1,21 @@
 import React from "react";
-import { StyleSheet, SafeAreaView, View } from "react-native";
+import { StyleSheet, SafeAreaView, View, ScrollView } from "react-native";
+import { Categories } from "../components/Categories";
 import { HeaderTabs } from "../components/HeaderTabs";
-import {SearchBar} from "../components/SearchBar";
+import { Restaurant } from "../components/Restaurant";
+import { SearchBar } from "../components/SearchBar";
 
 export const Home = () => {
   return (
     <SafeAreaView style={styles.home}>
       <View style={styles.view}>
         <HeaderTabs />
-        <SearchBar/>
+        <SearchBar />
       </View>
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <Categories />
+        <Restaurant/>
+      </ScrollView>
     </SafeAreaView>
   );
 };
