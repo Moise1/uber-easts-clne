@@ -1,14 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 interface Props {
-  txt: string;
+  txt?: string;
   activeTab: string;
   setActiveTab: (value: string) => void;
-}
+} 
 
-export const HeaderTabs = () => {
-  const [activeTab, setActiveTab] = useState<string>("Delivery");
+export const HeaderTabs = (props: Props) => {
+  const {activeTab, setActiveTab} = props;
   
   return (
     <View style={styles.headerTabs}>

@@ -10,6 +10,7 @@ client.interceptors.request.use(
   async (req: AxiosRequestConfig) => {
     req.headers = {
         Authorization: `Bearer ${YELP_API_KEY}`,
+        'X-Requested-With': 'XMLHttpRequest',
         ...req.headers
       };
     return req;

@@ -6,11 +6,18 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
 
-export const SearchBar = () => {
+interface Props {
+    cityHandler: (city: string) => void;
+}
+export const SearchBar = ({cityHandler}: Props) => {
   return (
     <View style={styles.view}>
      <GooglePlacesAutocomplete 
      query={{key: GOOGLE_PLACES_API_KEY}}
+     onPress={(data, details = null)=>{
+         const city = data.description.split(',')[0];
+         cityHandler(city);
+        }}
      styles={{...searchBarStyles}}
      placeholder="Search..."
      renderLeftButton={() =>(
