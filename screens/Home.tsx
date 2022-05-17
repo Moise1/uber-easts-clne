@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { StyleSheet, SafeAreaView, View, ScrollView } from "react-native";
+import { StyleSheet, View, SafeAreaView, ScrollView } from "react-native";
 import { Categories } from "../components/Categories";
 import { HeaderTabs } from "../components/HeaderTabs";
 import { Restaurants } from "../components/Restaurants";
 import { SearchBar } from "../components/SearchBar";
 import {client} from '../client';
+import { Divider } from "react-native-elements";
+import { BottomTabs } from "../components/BottomTabs";
 
 
 export const Home = () => {
@@ -22,8 +24,7 @@ export const Home = () => {
     fetchBusinessData();
   }, [city, activeTab]);
 
-  console.log('active tab', activeTab);
-  return (
+    return (
     <SafeAreaView style={styles.home}>
       <View style={styles.view}>
         <HeaderTabs activeTab={activeTab} setActiveTab={setActiveTab}/>
@@ -33,6 +34,8 @@ export const Home = () => {
         <Categories />
         <Restaurants localRestos={businessData}/>
       </ScrollView>
+      <Divider />
+      <BottomTabs/>
     </SafeAreaView>
   );
 };
