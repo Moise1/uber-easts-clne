@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { StyleSheet, View, SafeAreaView, ScrollView } from "react-native";
-import { Categories } from "../components/Categories";
-import { HeaderTabs } from "../components/HeaderTabs";
-import { Restaurants } from "../components/Restaurants";
-import { SearchBar } from "../components/SearchBar";
+import { Categories } from "../components/home/Categories";
+import { HeaderTabs } from "../components/home/HeaderTabs";
+import { Restaurants } from "../components/home/Restaurants";
+import { SearchBar } from "../components/home/SearchBar";
 import {client} from '../client';
 import { Divider } from "react-native-elements";
-import { BottomTabs } from "../components/BottomTabs";
+import { BottomTabs } from "../components/home/BottomTabs";
 
 
 export const Home = () => {
