@@ -3,38 +3,53 @@ import React from "react";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 
 interface Props {
-  localRestos: [];
-  restoImg: string;
-  restoName: string
-  rating: string;
+  localRestos: {
+    image_url: string;
+    name: string;
+    rating: string;
+    [key: string]: string;
+  }[];
+  restoImg?: string;
+  restoName?: string;
+  rating?: string;
+  navigation: any;
 }
 
-export const Restaurants = ({localRestos}: Props) => {
+export const Restaurants = ({ navigation, ...rest }: Props) => {
+  const { localRestos } = rest;
   return (
-    <TouchableOpacity activeOpacity={1} style={styles.restoActiveOpacity}>
-     {localRestos?.map(({image_url, name, rating}, idx: number) =>(
-        <View style={styles.mainRestoView} key={idx}>
-        <RestoImg restoImg={image_url}/>
-        <RestoInfo restoName={name} rating={rating}/>
-      </View>
-     ))}
-    </TouchableOpacity>
+    <>
+      {localRestos?.map(({ image_url, name, rating }, idx: number) => (
+        <TouchableOpacity 
+        activeOpacity={1} 
+        style={styles.restoActiveOpacity}
+        onPress={() => navigation.navigate('RestoDetail')}>
+          <View style={styles.mainRestoView} key={idx}>
+            <RestoImg restoImg={image_url} />
+            <RestoInfo restoName={name} rating={rating} />
+          </View>
+        </TouchableOpacity>
+      ))}
+    </>
   );
 };
 
-const RestoImg = ({restoImg}: Props['restoImg']) => (
+const RestoImg = ({ restoImg }: { restoImg: Props["restoImg"] }) => (
   <>
-    <Image
-      source={{uri: restoImg}}
-      style={styles.img}
-    />
+    <Image source={{ uri: restoImg }} style={styles.img} />
     <TouchableOpacity style={styles.iconContainer}>
       <MaterialCommunityIcons name="heart-outline" size={25} color="#fff" />
     </TouchableOpacity>
   </>
 );
 
-const RestoInfo = ({restoName, rating}: {restoName: Props['restoName'], rating: Props['rating']}) => (
+const RestoInfo = ({
+  restoName,
+  rating,
+}: {
+  restoName: Props["restoName"];
+  rating: Props["rating"];
+}) => (
   <View style={styles.restoInfo}>
     <View>
       <Text style={styles.description}>{restoName}</Text>

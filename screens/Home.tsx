@@ -8,8 +8,11 @@ import {client} from '../client';
 import { Divider } from "react-native-elements";
 import { BottomTabs } from "../components/home/BottomTabs";
 
+interface Props {
+  navigation: string
+}
 
-export const Home = () => {
+export const Home = ({navigation}: Props) => {
   const [businessData, setBusinessData] = useState([]);
   const [city, setCity] = useState<string>('San Francisco');
   const [activeTab, setActiveTab] = useState<string>('Delivery');
@@ -32,7 +35,7 @@ export const Home = () => {
       </View>
       <ScrollView showsVerticalScrollIndicator={false}>
         <Categories />
-        <Restaurants localRestos={businessData}/>
+        <Restaurants localRestos={businessData} navigation={navigation}/>
       </ScrollView>
       <Divider />
       <BottomTabs/>
