@@ -19,14 +19,25 @@ export const Restaurants = ({ navigation, ...rest }: Props) => {
   const { localRestos } = rest;
   return (
     <>
-      {localRestos?.map(({ image_url, name, rating }, idx: number) => (
-        <TouchableOpacity 
-        activeOpacity={1} 
-        style={styles.restoActiveOpacity}
-        onPress={() => navigation.navigate('RestoDetail')}>
-          <View style={styles.mainRestoView} key={idx}>
-            <RestoImg restoImg={image_url} />
-            <RestoInfo restoName={name} rating={rating} />
+      {localRestos?.map((resto, idx: number) => (
+        <TouchableOpacity
+          key={idx}
+          activeOpacity={1}
+          style={styles.restoActiveOpacity}
+          onPress={() =>
+            navigation.navigate("RestoDetail", {
+              name: resto.name,
+              img: resto.image_url,
+              rating: resto.rating,
+              categories: resto.categories,
+              price: resto.price,
+              reviews: resto.review_count,
+            })
+          }
+        >
+          <View style={styles.mainRestoView}>
+            <RestoImg restoImg={resto.image_url} />
+            <RestoInfo restoName={resto.name} rating={resto.rating} />
           </View>
         </TouchableOpacity>
       ))}
